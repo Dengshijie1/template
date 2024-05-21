@@ -5,6 +5,8 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import UnoCSS from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
 import { presetUno, presetAttributify, presetIcons } from 'unocss'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -22,6 +24,17 @@ export default defineConfig(({ command, mode }) => {
       UnoCSS({
         // 使用Unocss
         presets: [presetUno(), presetAttributify(), presetIcons()],
+      }),
+      AutoImport({
+        imports: ['vue', 'vue-router'],
+        // 可以选择auto-import.d.ts生成的位置，使用ts建议设置为'src/auto-import.d.ts'
+        dts: 'src/auto-import.d.ts',
+      }),
+      Components({
+        dirs: ['src/components'],
+        extensions: ['vue', 'tsx'],
+        // 配置文件生成位置
+        dts: 'src/components.d.ts',
       }),
     ],
     resolve: {
