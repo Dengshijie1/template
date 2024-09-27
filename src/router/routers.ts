@@ -7,9 +7,16 @@ export const constantRoute = [
       title: '',
       hidden: false,
     },
-    // redirect: '/home',
+    redirect: 'home',
     children: [
-
+      {
+        path: 'home',
+        component: () => import('@/views/home/HomeView.vue'),
+        name: 'home',
+        meta: {
+          title: 'home',
+        },
+      },
     ],
   },
   {

@@ -7,11 +7,15 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import pack from './package.json'
 import { presetUno, presetAttributify, presetIcons } from 'unocss'
-// https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   let env = loadEnv(mode, process.cwd())
   return {
+    base: env.VITE_ENV ? `` : `${env.VITE_BUILD_URL}/${pack.version}/dist`, // 注意这里的${pack.version}需要动态获取
+    build: {
+      sourcemap: true,
+    },
     plugins: [
       vue({
         script: {

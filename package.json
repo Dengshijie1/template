@@ -1,5 +1,5 @@
 {
-  "name": "biocsi-admin",
+  "name": "temple",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -14,12 +14,16 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "build-test": "node script/build-test.cjs status=test",
+    "build-pro": "node script/build-test.cjs status=pro"
   },
   "dependencies": {
+    "@types/lodash-es": "^4.17.12",
     "axios": "^1.7.1",
+    "compressing": "^1.10.1",
+    "lodash-es": "^4.17.21",
     "pinia": "^2.1.7",
-    "radash": "^12.1.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
